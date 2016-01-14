@@ -18,4 +18,8 @@ router.get('/list',function(req,res){
 	})
 })
 
+router.get('/reg',function(){
+	res.render('reg',{title:'Signup'});
+})
+
 module.exports = router;
