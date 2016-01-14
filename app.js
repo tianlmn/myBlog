@@ -14,8 +14,8 @@ var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var partials = require('express-partials');
 
-var MongoStore = require('connect-mongo')(session);
-var settings = require('../settings');
+//var MongoStore = require('connect-mongo')(session);
+var settings = require('./settings');
 
 var app = express();
 
