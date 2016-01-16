@@ -6,6 +6,8 @@ var crypto = require('crypto');
 var User = require('../models/user.js');
 
 
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
@@ -27,7 +29,7 @@ router.get('/reg',function(req,res){
 	res.render('reg',{title:'Signup'});
 });
 
-app.post('/reg', function(req, res) {
+router.post('/reg', function(req, res) {
 	//检验用户两次输入的口令是否一致
 	if (req.body['password-repeat'] != req.body['password']) {
 		req.flash('error', '两次输入的口令不一致');
