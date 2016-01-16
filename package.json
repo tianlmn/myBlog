@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --harmony --debug-brk ./bin/www"
+    "start": "nodemon --debug-brk ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
