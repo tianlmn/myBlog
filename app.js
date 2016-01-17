@@ -12,6 +12,8 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
+
+//新插件
 var partials = require('express-partials');
 var flash = require('connect-flash');
 
