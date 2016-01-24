@@ -134,7 +134,7 @@ router.get('/u/:user', function(req, res) {
 				req.flash('error', err);
 				return res.redirect('/');
 			}
-			res.render('index', {
+			res.render('user', {
 				title: user.name,
 				posts: posts,
 			});
