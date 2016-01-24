@@ -1,0 +1,14 @@
+
+<form method="post" class="well form-inline center" style="text-align:center;">
+	<textarea class="span8" rows="2" name="log" ></textarea>
+	<button type="submit" class="btn btn-success"><i class="icon-comment icon-white">
+	</i> 发言</button>
+</form>
+<dl>
+	<%if(logs){%>
+	<%logs.forEach(function(log,index){%>
+	<dt><a href="/u/<%=log.user%>"><%=log.user%></a> <%=FormatDate(log.time,"yyyy-MM-dd HH:mm:ss 星期W")%></dt>
+	<dd><div class="hero-unit"><span style="color:green"><%=log.message%></span></div></dd>
+	<%})%>
+	<%}%>
+</dl>

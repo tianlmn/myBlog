@@ -5,7 +5,7 @@ var router = express.Router();
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var Post = require('../models/post.js');
-
+var Log = require('../models/log.js');
 
 
 /* GET home page. */
@@ -134,7 +134,7 @@ router.get('/u/:user', function(req, res) {
 				req.flash('error', err);
 				return res.redirect('/');
 			}
-			res.render('user', {
+			res.render('index', {
 				title: user.name,
 				posts: posts,
 			});
@@ -142,7 +142,34 @@ router.get('/u/:user', function(req, res) {
 	});
 });
 
+router.get('/log',function(req,res){
+	var log=[];
+	Log.get(function(err,logs){
+		if(err){
+			req.flash('error', err);
+			return res.redirect('/');
+		}
+		res.render('log',{title:"更新日志",logs:logs});
+	})
+	
+})
 
+router.post('/log',checkLogin);
+router.post('/log',checkIsAdmin);
+router.post('/log',function(req,res){
+	var currentUser = req.session.user;
+	var log=new Log('xiaof',req.body.log);
+	log.save(function(err){
+		if(err)
+		{
+			req.flash('error',err);
+			return res.redirect('/log');
+		}
+		req.flash('success','更新日志成功');
+		return res.redirect('/log');
+	})
+	
+})
 
 
 function checkLogin(req, res, next) {
@@ -159,5 +186,16 @@ function checklogout(req, res, next) {
 	}
 	next();
 }
+function checkIsAdmin(req, res,next){
+	if (req.session.user && req.session.user.name=='xiaof') {
+		//ok
+	}
+	else{
+		req.flash('error', '需要管理员权限');
+		return res.redirect('/');
+	}
+	next();
+}
+
 
 module.exports = router;

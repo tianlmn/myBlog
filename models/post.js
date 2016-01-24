@@ -31,7 +31,7 @@ Post.prototype.save = function save(callback) {
 			// 写入 post 文档
 			collection.insert(post, {safe: true}, function(err, post) {
 				mongodb.close();
-				callback(err, post);
+				callback(err);
 			});
 		});
 	});

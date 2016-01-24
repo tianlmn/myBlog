@@ -17,6 +17,9 @@ var errorHandler = require('errorhandler');
 var partials = require('express-partials');
 var flash = require('connect-flash');
 
+//自己的插件
+var mycommon = require('mycommon');
+
 //mongodb支持的会话
 var MongoStore = require('connect-mongo/es5')(session);
 var settings = require('./settings');
@@ -62,9 +65,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash())
 //注册视图交互
 app.use(function(req, res, next){
-  console.log("app.usr local");
   res.locals.user = req.session.user;
-  res.locals.post = req.session.post;
+  //res.locals.post = req.session.post;
   var error = req.flash('error');
   res.locals.error = error.length ? error : null;
 
@@ -77,6 +79,10 @@ app.use(function(req, res, next){
 //路由
 app.use('/', route);
 app.use('/users', users);
+
+//全局变量
+app.locals.FormatDate = mycommon.FormatDate;
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
