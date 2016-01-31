@@ -4,6 +4,7 @@ var express = require('express');
 var users = require('./routes/users');
 var path = require('path');
 var route = require('./routes/index');
+var u = require('./routes/u')
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var methodOverride = require('method-override');
@@ -78,6 +79,7 @@ app.use(function(req, res, next){
 
 //路由
 app.use('/', route);
+app.use('/u', u);
 app.use('/users', users);
 
 //全局变量
